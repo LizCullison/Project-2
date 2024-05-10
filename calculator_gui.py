@@ -184,15 +184,18 @@ class GUI(QWidget):
             
     def calculate_area(self):
         shape = self.shape_combo.currentText()
-        if shape == 'Rectangle':
-            base = float(self.base_input.text())
-            height = float(self.height_input.text())
-            area = Formulas.rectangle_area(base, height)
-        elif shape == 'Triangle':
-            base = float(self.base_input.text())
-            height = float(self.height_input.text())
-            area = Formulas.triangle_area(base, height)
-        elif shape == 'Circle':
-            radius = float(self.radius_input.text())
-            area = Formulas.circle_area(radius)
-        self.display.setText(str(area))
+        try:
+            if shape == 'Rectangle':
+                base = float(self.base_input.text())
+                height = float(self.height_input.text())
+                area = Formulas.rectangle_area(base, height)
+            elif shape == 'Triangle':
+                base = float(self.base_input.text())
+                height = float(self.height_input.text())
+                area = Formulas.triangle_area(base, height)
+            elif shape == 'Circle':
+                radius = float(self.radius_input.text())
+                area = Formulas.circle_area(radius)
+            self.display.setText(str(area))
+        except ValueError:
+            self.display.setText('Error: Invalid input')
